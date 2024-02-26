@@ -54,22 +54,22 @@ class DipLuckyTask extends Task {
   luckyValue = 0;
 
   async run() {
-    const growth = this.juejin.growth();
+    // const growth = this.juejin.growth();
 
-    const luckyusersResult = await growth.getLotteriesLuckyUsers();
-    if (luckyusersResult.count > 0) {
-      const no1LuckyUser = luckyusersResult.lotteries[0];
-      const dipLuckyResult = await growth.dipLucky(no1LuckyUser.history_id);
-      if (dipLuckyResult.has_dip) {
-        this.dipStatus = 2;
-      } else {
-        this.dipStatus = 1;
-        this.dipValue = dipLuckyResult.dip_value;
-      }
-    }
+    // const luckyusersResult = await growth.getLotteriesLuckyUsers();
+    // if (luckyusersResult.count > 0) {
+    //   const no1LuckyUser = luckyusersResult.lotteries[0];
+    //   const dipLuckyResult = await growth.dipLucky(no1LuckyUser.history_id);
+    //   if (dipLuckyResult.has_dip) {
+    //     this.dipStatus = 2;
+    //   } else {
+    //     this.dipStatus = 1;
+    //     this.dipValue = dipLuckyResult.dip_value;
+    //   }
+    // }
 
-    const luckyResult = await growth.getMyLucky();
-    this.luckyValue = luckyResult.total_value;
+    // const luckyResult = await growth.getMyLucky();
+    // this.luckyValue = luckyResult.total_value;
   }
 }
 
@@ -81,21 +81,21 @@ class BugfixTask extends Task {
   userOwnBug = 0;
 
   async run() {
-    const bugfix = this.juejin.bugfix();
+    // const bugfix = this.juejin.bugfix();
 
-    const competition = await bugfix.getCompetition();
-    const bugfixInfo = await bugfix.getUser(competition);
-    this.userOwnBug = bugfixInfo.user_own_bug;
+    // const competition = await bugfix.getCompetition();
+    // const bugfixInfo = await bugfix.getUser(competition);
+    // this.userOwnBug = bugfixInfo.user_own_bug;
 
-    try {
-      const notCollectBugList = await bugfix.getNotCollectBugList();
-      await bugfix.collectBugBatch(notCollectBugList);
-      this.bugStatus = 1;
-      this.collectBugCount = notCollectBugList.length;
-      this.userOwnBug += this.collectBugCount;
-    } catch (e) {
-      this.bugStatus = 2;
-    }
+    // try {
+    //   const notCollectBugList = await bugfix.getNotCollectBugList();
+    //   await bugfix.collectBugBatch(notCollectBugList);
+    //   this.bugStatus = 1;
+    //   this.collectBugCount = notCollectBugList.length;
+    //   this.userOwnBug += this.collectBugCount;
+    // } catch (e) {
+    //   this.bugStatus = 2;
+    // }
   }
 }
 
